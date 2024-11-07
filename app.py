@@ -7,6 +7,8 @@ import os
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['FREEZER_BASE_URL'] = os.environ.get('BASE_URL', '')  # Empty string for relative URLs
+app.config['FREEZER_RELATIVE_URLS'] = True
 db = SQLAlchemy(app)
 
 class BlogPost(db.Model):
@@ -21,7 +23,6 @@ class BlogPost(db.Model):
 
 @app.route('/')
 def index():
-    # Content for the website
     biography = {
         'name': 'Sohailzamn',
         'title': 'Sharing Islamic Content & Reflections',
@@ -50,7 +51,6 @@ def index():
         'twitter': 'https://twitter.com/sohailzamn'
     }
     
-    # Get recent blog posts
     recent_posts = BlogPost.query.order_by(BlogPost.created_at.desc()).limit(3).all()
     
     return render_template('index.html', 
