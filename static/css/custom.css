@@ -1,0 +1,47 @@
+/* Custom styles to complement Bootstrap */
+.islamic-pattern {
+    opacity: 0.1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.hero-section {
+    padding: 6rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.teaching-card {
+    border: none;
+    transition: transform 0.3s ease;
+}
+
+.teaching-card:hover {
+    transform: translateY(-5px);
+}
+
+.social-icon {
+    font-size: 1.5rem;
+    margin: 0 1rem;
+    color: var(--bs-secondary);
+    transition: color 0.3s ease;
+}
+
+.social-icon:hover {
+    color: var(--bs-primary);
+}
+
+.arabic-text {
+    font-family: 'Amiri', serif;
+    direction: rtl;
+}
+
+.section-divider {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--bs-secondary), transparent);
+    margin: 3rem 0;
+}
