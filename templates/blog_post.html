@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section-padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <article class="blog-post">
+                    <h1 class="mb-4">{{ post.title }}</h1>
+                    <div class="mb-4">
+                        <small class="text-muted">{{ post.created_at.strftime('%B %d, %Y') }}</small>
+                    </div>
+                    <div class="blog-content">
+                        {{ post.content_html()|safe }}
+                    </div>
+                </article>
+                <div class="mt-5">
+                    <a href="{{ url_for('blog') }}" class="btn btn-secondary">← Back to Blog</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
