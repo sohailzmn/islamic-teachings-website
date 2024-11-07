@@ -1,12 +1,10 @@
-from flask import Flask, jsonify
+from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import markdown
 import os
-from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
@@ -18,17 +16,12 @@ class BlogPost(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     summary = db.Column(db.String(300))
 
-    def to_dict(self):
-        return {
-            'id': self.id,
-            'title': self.title,
-            'content': markdown.markdown(self.content),
-            'created_at': self.created_at.strftime('%B %d, %Y'),
-            'summary': self.summary
-        }
+    def content_html(self):
+        return markdown.markdown(self.content)
 
-@app.route('/api/content')
-def get_content():
+@app.route('/')
+def index():
+    # Content for the website
     biography = {
         'name': 'Sohailzamn',
         'title': 'Sharing Islamic Content & Reflections',
@@ -57,24 +50,24 @@ def get_content():
         'twitter': 'https://twitter.com/sohailzamn'
     }
     
-    recent_posts = [post.to_dict() for post in BlogPost.query.order_by(BlogPost.created_at.desc()).limit(3).all()]
+    # Get recent blog posts
+    recent_posts = BlogPost.query.order_by(BlogPost.created_at.desc()).limit(3).all()
     
-    return jsonify({
-        'biography': biography,
-        'teachings': teachings,
-        'social_media': social_media,
-        'recent_posts': recent_posts
-    })
+    return render_template('index.html', 
+                         biography=biography,
+                         teachings=teachings,
+                         social_media=social_media,
+                         recent_posts=recent_posts)
 
-@app.route('/api/blog')
-def get_blog_posts():
-    posts = [post.to_dict() for post in BlogPost.query.order_by(BlogPost.created_at.desc()).all()]
-    return jsonify(posts)
+@app.route('/blog')
+def blog():
+    posts = BlogPost.query.order_by(BlogPost.created_at.desc()).all()
+    return render_template('blog.html', posts=posts)
 
-@app.route('/api/blog/<int:post_id>')
-def get_blog_post(post_id):
+@app.route('/blog/<int:post_id>')
+def blog_post(post_id):
     post = BlogPost.query.get_or_404(post_id)
-    return jsonify(post.to_dict())
+    return render_template('blog_post.html', post=post)
 
 if __name__ == '__main__':
     with app.app_context():
