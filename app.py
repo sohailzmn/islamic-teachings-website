@@ -7,22 +7,22 @@ def index():
     # Content for the website
     biography = {
         'name': 'Sohailzamn',
-        'title': 'Islamic Teacher & Content Creator',
-        'description': 'Dedicated to spreading the message of Islam through authentic teachings and modern content creation.',
+        'title': 'Content Creator sharing Islamic knowledge',
+        'description': 'Making Islamic teachings accessible and relatable through modern content creation.',
     }
     
     teachings = [
         {
-            'title': 'Quranic Studies',
-            'description': 'In-depth exploration of Quranic verses and their practical application in daily life.'
+            'title': 'Daily Life & Faith',
+            'description': 'Practical guidance on applying Islamic principles in everyday situations.'
         },
         {
-            'title': 'Islamic Ethics',
-            'description': 'Understanding and implementing Islamic moral values in contemporary society.'
+            'title': 'Modern Challenges',
+            'description': 'Addressing contemporary issues through an Islamic perspective.'
         },
         {
-            'title': 'Prophetic Traditions',
-            'description': 'Learning from the life and teachings of Prophet Muhammad (peace be upon him).'
+            'title': 'Personal Growth',
+            'description': 'Developing character and spirituality in the modern world.'
         }
     ]
     

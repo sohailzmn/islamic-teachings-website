@@ -4,27 +4,23 @@
 <!-- Hero Section -->
 <section class="hero-section text-center">
     <div class="container">
-        <h1 class="display-4 mb-4">{{ biography.name }}</h1>
-        <h2 class="h3 mb-4">{{ biography.title }}</h2>
+        <h1 class="display-2 mb-4">{{ biography.name }}</h1>
+        <h2 class="h2 mb-4">{{ biography.title }}</h2>
         <p class="lead mb-4">{{ biography.description }}</p>
-        <div class="arabic-text mb-4">
-            <h3>بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ</h3>
-        </div>
     </div>
 </section>
 
 <div class="section-divider"></div>
 
 <!-- Biography Section -->
-<section id="biography" class="py-5">
+<section id="biography" class="section-padding">
     <div class="container">
-        <h2 class="text-center mb-5">Biography</h2>
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <p class="lead text-center">
-                    Dedicated to spreading authentic Islamic knowledge through contemporary means,
-                    Sohailzamn combines traditional Islamic teachings with modern content creation
-                    to reach and inspire Muslims worldwide.
+                    Sharing authentic Islamic knowledge in a relatable way,
+                    creating content that connects with Muslims in their daily lives
+                    and helps them navigate the modern world while staying true to their faith.
                 </p>
             </div>
         </div>
@@ -34,15 +30,15 @@
 <div class="section-divider"></div>
 
 <!-- Teachings Section -->
-<section id="teachings" class="py-5">
+<section id="teachings" class="section-padding">
     <div class="container">
-        <h2 class="text-center mb-5">Key Teachings</h2>
+        <h2 class="text-center h1 mb-5">Featured Content</h2>
         <div class="row g-4">
             {% for teaching in teachings %}
             <div class="col-md-4">
                 <div class="card teaching-card h-100">
                     <div class="card-body text-center">
-                        <h3 class="card-title h4">{{ teaching.title }}</h3>
+                        <h3 class="card-title h4 mb-4">{{ teaching.title }}</h3>
                         <p class="card-text">{{ teaching.description }}</p>
                     </div>
                 </div>
@@ -55,9 +51,9 @@
 <div class="section-divider"></div>
 
 <!-- Contact Section -->
-<section id="contact" class="py-5">
+<section id="contact" class="section-padding">
     <div class="container text-center">
-        <h2 class="mb-5">Connect With Us</h2>
+        <h2 class="h1 mb-5">Connect With Us</h2>
         <div class="social-links">
             <a href="{{ social_media.youtube }}" target="_blank" class="social-icon">
                 <i class="fab fa-youtube"></i>
