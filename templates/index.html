@@ -4,8 +4,9 @@
 <!-- Hero Section -->
 <section class="hero-section text-center">
     <div class="container">
-        <h1 class="display-2 mb-4">{{ biography.name }}</h1>
-        <h2 class="h2 mb-4">{{ biography.title }}</h2>
+        <h1 class="bismillah mb-5" style="font-family: 'Amiri', serif; font-size: 3rem;">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</h1>
+        <h2 class="display-2 mb-4">{{ biography.name }}</h2>
+        <h3 class="h2 mb-4">{{ biography.title }}</h3>
         <p class="lead mb-4">{{ biography.description }}</p>
     </div>
 </section>
@@ -18,9 +19,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <p class="lead text-center">
-                    Sharing authentic Islamic knowledge in a relatable way,
-                    creating content that connects with Muslims in their daily lives
-                    and helps them navigate the modern world while staying true to their faith.
+                    {{ biography.long_description }}
                 </p>
             </div>
         </div>
@@ -29,21 +28,28 @@
 
 <div class="section-divider"></div>
 
-<!-- Teachings Section -->
-<section id="teachings" class="section-padding">
+<!-- Recent Posts Section -->
+<section id="recent-posts" class="section-padding">
     <div class="container">
-        <h2 class="text-center h1 mb-5">Featured Content</h2>
+        <h2 class="text-center h1 mb-5">Recent Posts</h2>
         <div class="row g-4">
-            {% for teaching in teachings %}
+            {% for post in recent_posts %}
             <div class="col-md-4">
                 <div class="card teaching-card h-100">
-                    <div class="card-body text-center">
-                        <h3 class="card-title h4 mb-4">{{ teaching.title }}</h3>
-                        <p class="card-text">{{ teaching.description }}</p>
+                    <div class="card-body">
+                        <h3 class="card-title h4 mb-3">{{ post.title }}</h3>
+                        <p class="card-text">{{ post.summary }}</p>
+                        <div class="mt-3">
+                            <small class="text-muted">{{ post.created_at.strftime('%B %d, %Y') }}</small>
+                        </div>
+                        <a href="{{ url_for('blog_post', post_id=post.id) }}" class="btn btn-secondary mt-3">Read More</a>
                     </div>
                 </div>
             </div>
             {% endfor %}
+        </div>
+        <div class="text-center mt-5">
+            <a href="{{ url_for('blog') }}" class="btn btn-secondary">View All Posts</a>
         </div>
     </div>
 </section>
@@ -53,7 +59,7 @@
 <!-- Contact Section -->
 <section id="contact" class="section-padding">
     <div class="container text-center">
-        <h2 class="h1 mb-5">Connect With Us</h2>
+        <h2 class="h1 mb-5">Connect With Me</h2>
         <div class="social-links">
             <a href="{{ social_media.youtube }}" target="_blank" class="social-icon">
                 <i class="fab fa-youtube"></i>

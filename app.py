@@ -24,8 +24,9 @@ def index():
     # Content for the website
     biography = {
         'name': 'Sohailzamn',
-        'title': 'Content Creator sharing Islamic knowledge',
-        'description': 'Making Islamic teachings accessible and relatable through modern content creation.',
+        'title': 'Sharing Islamic Content & Reflections',
+        'description': 'Exploring and sharing the beauty of Islam through personal experiences and reflections.',
+        'long_description': 'As a passionate Muslim content creator, I share my personal journey and insights about Islam. Through my blog posts and social media content, I aim to connect with fellow Muslims, sharing experiences and reflections that help us grow in our faith together.'
     }
     
     teachings = [
@@ -49,10 +50,14 @@ def index():
         'twitter': 'https://twitter.com/sohailzamn'
     }
     
+    # Get recent blog posts
+    recent_posts = BlogPost.query.order_by(BlogPost.created_at.desc()).limit(3).all()
+    
     return render_template('index.html', 
                          biography=biography,
                          teachings=teachings,
-                         social_media=social_media)
+                         social_media=social_media,
+                         recent_posts=recent_posts)
 
 @app.route('/blog')
 def blog():
